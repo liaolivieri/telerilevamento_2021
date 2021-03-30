@@ -11,7 +11,7 @@ library(raster)
 ### Day 1
 
 # Setwd mi permette di creare un collegamento tra la cartella lab e R. 
-setwd("C:/lab/") # Windows
+setwd("C:/lab/") #Windows
 # Brick mi permette di importare un immagine satellitare contenuta nel mio pc nella cartella lab.
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 #Ricavo informazioni sull'immagine caricata 
@@ -52,7 +52,7 @@ dev.off()
 #row=1,2 una riga e due colonne:
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
-#non riusciamo in questo modo a plottare insieme quindi usiamo par per decidere come mettere le immahgini nel nostro software:
+#non riusciamo in questo modo a plottare insieme quindi usiamo la funzione Par per decidere come mettere le immahgini nel nostro software:
 par(mfrow=c(1,2))
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
@@ -62,13 +62,13 @@ plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
 #par(mfcol= per le colonne prima e dopo le righe) // (mfrow= prima righe e poi colonne)
 
-#plot le prime 4 bande di Landsat
+#Plot le prime 4 bande di Landsat (4 righe e 1 colonna)
 par(mfrow=c(4,1))
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
 plot(p224r63_2011$B3_sre)
 plot(p224r63_2011$B4_sre)    
-
+#Plot le prime 4 bande di Landsat (2 righe e 2 colonne)
 par(mfrow=c(2,2))
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
@@ -88,3 +88,26 @@ plot(p224r63_2011$B3_sre, col=clr)
 #colorRampPalette banda dell'infrarosso:
 clnir <- colorRampPalette(c("red","orange","yellow")) (100)
 plot(p224r63_2011$B4_sre, col=clnir)
+
+### Day 4
+# Visualizing data by RGB plotting
+
+# Bande Landsat:
+#B1: blue
+#B2: green
+#B3: red 
+#B4: infrarosso vicino
+#B5: infrarosso medio
+#B6: infrarosso termico 
+#B7: infrarosso medio 
+# Uso la funzione plotRGB per montare 3 bande alla volta e associare una banda a una componente di RGB + stretch="lin" per permettere di visualizzare tutte le sfumature di colori presenti nelle bande
+plotRGB(p224r63_2011,r=3,g=2,b=1, stretch="Lin")
+#Abbiamo creato un immagine a colori naturali!!
+#Ora però giochiamo con le altre bande e usiamo l'infrarosso: r=4, g=3, b=2
+plotRGB(p224r63_2011,r=4,g=3,b=2, stretch="Lin")
+
+
+
+
+
+
