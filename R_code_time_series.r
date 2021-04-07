@@ -23,5 +23,29 @@ plot(lst_2010)
 lst_2015 <- raster("lst_2015.tif")
 plot(lst_2015)
 
-#fare un pannello con le 4 immagini:
+#Fare un pannello con le 4 immagini:
 par(mfrow=c(2,2))
+plot(lst_2000)
+plot(lst_2005)
+plot(lst_2010)
+plot(lst_2015)
+#Importiamo le immagini tutte insieme con la funzione: lapply
+#Prima facciamo la lista dei nostri file per poter usare la funzione lapply
+#con il pattern identifichiamo la scritta in comune a tutti i file quindi nel nostro caso lst
+rlist <- list.files(pattern="lst")
+rlist
+#Ora che abbiamo la nostra lista con i nostri file applichiamo lapply a tutta la lista associata alla funzione raster
+import <- lapply(rlist,raster)
+import
+#Impaccettiamo i file con la funzione stack 
+TGr <- stack(import)
+#Quindi adesso possiamo plottare direttamente il pacchetto TGr
+plot(TGr)
+
+
+
+
+
+
+
+
