@@ -10,3 +10,7 @@
 library(knitr)
 
 setwd("C:/lab/") # Windows
+# Generà il report
+stitch("C:/lab/R_code.greenland.r.txt", template=system.file("misc", "knitr-template.Rnw", package="knitr"))
+# Mi genererà un file con estension .tex
+
