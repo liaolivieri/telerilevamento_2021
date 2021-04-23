@@ -1,0 +1,6 @@
+#R_code_multivariate_analysis
+
+library(raster)
+library(RStoolbox)
+
+# setwd("C:/lab/") #Windows
