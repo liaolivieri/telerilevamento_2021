@@ -1,4 +1,4 @@
-#R_code_multivariate_analysis
+#R_code_multivariate_analysis.r
 
 library(raster)
 library(RStoolbox)
