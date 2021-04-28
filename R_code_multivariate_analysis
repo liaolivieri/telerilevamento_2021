@@ -13,3 +13,10 @@ plot(p224r63_2011)
 plot(p224r63_2011$B1_sre, p224r63_2011$B2_sre, col="red", pch=19, cex=2)
 #Per mostrare tutte le correlazioni possibili tra tutte le variabili si può la funzione pairs
 pairs(p224r63_2011)
+
+### Day 2
+
+
+
+
+
