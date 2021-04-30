@@ -1,6 +1,7 @@
 #R_code_vegetation_indices.r
 
 library(raster) #oppure anche require(raster)
+library(RStoolbox)
 
 setwd("C:/lab/") #Windows
 
@@ -61,12 +62,16 @@ plot(ndvi2, col=cl)
 #ndvi2 <- dvi2 / (defor2$defor2.1 + defor2$defor2.2)
 #plot(ndvi2, col=cl)
 
+#RStoolbox: funzione spectralIndices con la quale posso calcolare tutti gli indici
+#b1=NIR, b2=red, b3=green
+vi1 <- spectralIndices(defor1, green=3, red=2, nir=1)
+plot(vi1, col=cl)
+#Facciamolo per la seconda immagine
+vi2 <- spectralIndices(defor2, green=3, red=2, nir=1)
+plot(vi2, col=cl)
 
-
-
-
-
-
-
-
+#Differenza NDVI
+difndvi <- ndvi1 - ndvi2
+cld <- colorRampPalette(c('blue','white','red'))(100) 
+plot(difndvi, col=cld)
 
