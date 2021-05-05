@@ -1,7 +1,15 @@
 #R_code_vegetation_indices.r
 
+#Pacchetti da installare
+#install.packages("raster")
+#install.packages("RStoolbox")
+#install.packages("rasterdiv") #for worlwide NDVI
+
+#Librerie:
 library(raster) #oppure anche require(raster)
-library(RStoolbox)
+library(RStoolbox) #per gli indici della vegetazione
+library(rasterdiv) #per il NDVI globale
+library(rasterVis)
 
 setwd("C:/lab/") #Windows
 
@@ -75,3 +83,15 @@ difndvi <- ndvi1 - ndvi2
 cld <- colorRampPalette(c('blue','white','red'))(100) 
 plot(difndvi, col=cld)
 
+### Day 3
+# worldwide NDVI
+
+#Vediamo NDVI mondiale 
+plot(copNDVI)
+#Togliamo l'acqua dalla visualizzazione, trasformandoli in non valori
+copNDVI <- reclassify(copNDVI, cbind(253:255, NA))
+#Vediamo l'NDVI in modo globale senza l'acqua
+plot(copNDVI)
+
+#rasterVis
+levelplot(copNDVI)
