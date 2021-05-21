@@ -3,10 +3,16 @@
 #Pacchetti da installare:
 #install.packages("raster")
 #install.packages("RStoolbox")
+#install.packages("ggplot2")
+#install.packages("gridExtra")
+#install.packages("viridis")
 
 #Librerie:
 library(raster)
 library(RStoolbox)
+library(ggplot2)
+library(gridExtra)
+library(viridis) #per colorare i plot di ggplot2
 
 setwd("C:/lab/") #Windows
 
@@ -74,10 +80,52 @@ summary(sentpca$model)
 #la prima PC continente il 67,36804% della informazione originale
 
 
+### Day 2
+pc1 <- sentpca$map$PC1
 
+#Funzione focal con la PC1, facciamo la sd di una sola banda
+pc1sd5 <- focal(pc1, w=matrix(1/25, nrow=5, ncol=5), fun=sd)
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) 
+plot(pc1sd5, col=clsd)
 
+#Usiamo la funzione source per mettere in R un pezzo di codice salvato in un file
+#Non dobbiamo copiare e incollare il codice con questa funzione
+source("source_test_lezione.r")
 
+source("source_ggplot.r")
 
+#Fare una nuova finestra con ggplot vuota
+ggplot()
+#Aggiungiamo un blocco a ggplot
+ggplot() + 
+geom_raster(pc1sd5, mapping= aes(x=x, y=y, fill=layer))
+#Aggungiamo la funzione per le legende di viridis
+ggplot() + 
+geom_raster(pc1sd5, mapping= aes(x=x, y=y, fill=layer)) +
+scale_fill_viridis()
+#Aggiungiamo un titolo alla nostra mappa
+ggplot() + 
+geom_raster(pc1sd5, mapping= aes(x=x, y=y, fill=layer)) +
+scale_fill_viridis() +
+ggtitle("Standard deviation of PC1 by viridis colour scale")
 
+#Scegliamo noi una legenda da viridis: magma
+p1 <- ggplot() + 
+geom_raster(pc1sd5, mapping= aes(x=x, y=y, fill=layer)) +
+scale_fill_viridis(option="magma") +
+ggtitle("Standard deviation of PC1 by magma colour scale")
 
+#Scegliamo noi un'altra legenda da virids: inferno
+p2 <- ggplot() + 
+geom_raster(pc1sd5, mapping= aes(x=x, y=y, fill=layer)) +
+scale_fill_viridis(option="inferno") +
+ggtitle("Standard deviation of PC1 by inferno colour scale")
 
+#Scegliamo noi un'altra legenda da virids: turbo
+p3 <- ggplot() + 
+geom_raster(pc1sd5, mapping= aes(x=x, y=y, fill=layer)) +
+scale_fill_viridis(option="turbo") +
+ggtitle("Standard deviation of PC1 by turbo colour scale")
+
+#Possiamo mettere tutte queste legende tutte in una volta (1magma=p1, 1inferno=p2, 1turbo=p3) con la funzione grid.arrage
+grid.arrange(p1, p2, p3, nrow=1)
