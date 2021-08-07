@@ -7,8 +7,7 @@ library(raster)
 library(rasterVis)
 library(RStoolbox)
 library(ggplot2)
-library(rasterdiv) #per il NDVI globale
-library(rasterVis)
+library(gridExtra)
 
 setwd("C:/lab/exam") #Windows
 
@@ -68,6 +67,30 @@ plotRGB(shasta2019_pca$map,r=1,g=2,b=3, stretch="Hist")
 par(mfrow=c(1,2))
 plotRGB(shasta2019_pca$map,r=1,g=2,b=3, stretch="Hist")
 plotRGB(shasta2021_pca$map,r=1,g=2,b=3, stretch="Hist")
+
+# Multiframe with ggplot
+sh19 <- ggRGB(shasta2019_pca$map,r=1,g=2,b=3, stretch="Hist")
+sh21 <- ggRGB(shasta2021_pca$map,r=1,g=2,b=3, stretch="Hist")
+grid.arrange(sh19, sh21, nrow=1)
+
+#.....................................................................................................................................................
+
+# Classification in 16 classes
+
+unsh19 <- unsuperClass(shasta2019, nClasses=16)
+plot(unsh19$map)
+
+unsh21 <- unsuperClass(shasta2021, nClasses=16)
+plot(unsh21$map)
+
+par(mfrow=c(1,2))
+plot(unsh19$map)
+plot(unsh21$map)
+
+
+
+
+
 
 
 
