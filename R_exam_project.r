@@ -75,7 +75,30 @@ sh21 <- ggRGB(shasta2021_pca$map,r=1,g=2,b=3, stretch="Hist")
 grid.arrange(sh19, sh21, nrow=1)
 
 
-# 2. Classification in 16 classes
+# 2. Unsupervised classification
+
+# Multiframe with ggplot2 e gridExtra for the 2 images of 2019 and 2021
+l1 <- ggRGB(shasta2019, r=1, g=2, b=3, stretch="lin")
+l2 <- ggRGB(shasta2021, r=1, g=2, b=3, stretch="lin")
+grid.arrange(l1, l2, nrow=1)
+
+# classification in 2 classes: (1 forest, 1 water)
+l1c <- unsuperClass(shasta2019, nClasses= 2)
+l1c
+plot(l1c$map)
+# Class1: forest
+# Class2: water
+l2c <- unsuperClass(shasta2021, nClasses= 2)
+l2c
+plot(l2c$map)
+freq(l1c$map)
+#      value   count
+# forest[1,]     1  664187
+# water[2,]     2 2726390
+freq(l2c$map)
+#      value   count
+# forest[1,]     1 2705449
+# water[2,]     2  685128
 
 unsh19 <- unsuperClass(shasta2019, nClasses=16)
 plot(unsh19$map)
