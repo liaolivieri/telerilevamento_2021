@@ -30,13 +30,13 @@ shasta2019r <- raster("shasta_oli_2019194_lrg.jpg")
 shasta2021r <- raster("shasta_oli_2021167_lrg.jpg")
 
 # Choose the color 
-cl <- colorRampPalette(c("blue","light blue","yellow","orange","pink","red"))(100)
+cll <- colorRampPalette(c("pink","blue","yellow","red"))(100)
 
 # Create a stack of the Lake
 lshasta <- stack(shasta2019r, shasta2021r)
 
 #Plot the stack with levelplot
-levelplot(lshasta,col.regions=cl, main="Lake Shasta", names.attr=c("July 2019","June 2021"))
+levelplot(lshasta,col.regions=cll, main="Lake Shasta", names.attr=c("July 2019","June 2021"))
 
 
 #............................................................................................................................................................
@@ -64,6 +64,7 @@ summary(shasta2019_pca$model)
 # Proportion of Variance  0.9493767  0.04290794 0.007715347
 # Cumulative Proportion   0.9493767  0.99228465 1.000000000
 plotRGB(shasta2019_pca$map,r=1,g=2,b=3, stretch="Hist")
+plot(shasta2019_pca$model) #For see the graphic
 
 # PCA of Lake Shasta 2021
 shasta2021_pca <- rasterPCA(shasta2021)
@@ -75,6 +76,7 @@ summary(shasta2021_pca$model)
 # Proportion of Variance  0.951292  0.04314722 0.005560759
 # Cumulative Proportion   0.951292  0.99443924 1.000000000
 plotRGB(shasta2019_pca$map,r=1,g=2,b=3, stretch="Hist")
+plot(shasta2021_pca$model) #For see the graphic
 
 # Comparison PCA 2019 and PCA 2021 
 par(mfrow=c(1,2))
@@ -133,6 +135,7 @@ difndvi <- ndvi1 - ndvi2
 plot(difndvi, col=cldd)
 
 #.....................................................................................................................................
+
 # SPECTRAL SIGNATURES
 
 # Create a spectral signature of images Lake Shasta 2019 with the function "click"
