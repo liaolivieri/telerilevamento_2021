@@ -1,6 +1,6 @@
 # R_exam_project.r
 
-# Drought in California in the Lake Shasta from 2019 to 2021
+# California drought in Sasha Lake from 2019 to 2021
 # Images from: https://earthobservatory.nasa.gov/images/148447/california-reservoirs-reflect-deepening-drought
 
 #Library:
