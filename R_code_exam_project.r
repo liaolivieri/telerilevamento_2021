@@ -91,6 +91,18 @@ grid.arrange(sh19, sh21, nrow=1)
 
 #......................................................................................................................................................
 
+# Spectral Indices
+
+# The function spectralIndices allows to calculate all the indices
+# b1=NIR, b2=red, b3=green
+# Image Shasta Lake 2019
+sp2019 <- spectralIndices(shasta2019, green=3, red=2, nir=1)
+plot(sp2019, col=cl)
+# Image Shasta Lake 2021
+sp2021 <- spectralIndices(shasta2021, green=3, red=2, nir=1)
+plot(sp2021, col=cl)
+
+
 # 1. DVI - Difference Vegetation Index
 
 # See how the bands of NIR and RED are called 
