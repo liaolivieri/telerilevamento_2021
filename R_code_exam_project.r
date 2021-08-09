@@ -130,6 +130,11 @@ plot(ndvi1, col=cld, main="NDVI of Shasta in 2019")
 ndvi2 <- (dvi2) / (shasta2021$shasta_oli_2021167_lrg.1 + shasta2021$shasta_oli_2021167_lrg.2)
 plot(ndvi2, col=cld, main="NDVI of Shasta in 2021")
 
+# Comparison togher for the difference
+par(mfrow=c(1,2))
+plot(ndvi1, col=cld, main="NDVI of Shasta in 2019")
+plot(ndvi2, col=cld, main="NDVI of Shasta in 2021")
+
 # Difference NDVI
 difndvi <- ndvi1 - ndvi2
 plot(difndvi, col=cldd)
@@ -138,12 +143,12 @@ plot(difndvi, col=cldd)
 
 # SPECTRAL SIGNATURES
 
-# Create a spectral signature of images Lake Shasta 2019 with the function "click"
+# Create a spectral signatures of image Lake Shasta 2019 with the function "click"
 plotRGB(shasta2019, r=1, g=2, b=3, stretch="lin")
 click(shasta2019, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
 # In a pixel of vegetation -> B1= very high value, B2=low value, B3= average value
 # In a pixel of water -> B1= low value, B2= high value, B3= very high value
-# Results
+# Results:
 #        x      y    cell shasta_oli_2019194_lrg.1 shasta_oli_2019194_lrg.2 shasta_oli_2019194_lrg.3
 # 1  521.5 1201.5  966665                       45                      133                      119
 # 2 1685.5  749.5 1879513                        4                       53                       60
@@ -153,7 +158,7 @@ click(shasta2019, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
 # 6  646.5  584.5 2211279                        4                       53                       67
 
 
-# Create a spectral signature of images Lake Shasta 2021  with the function "click"
+# Create a spectral signatures of image Lake Shasta 2021  with the function "click"
 plotRGB(shasta2021, r=1, g=2, b=3, stretch="hist")
 click(shasta2021, id=T, xy=T, cell=T, type="p", pch=16, col="yellow")
 # Results:
@@ -190,7 +195,7 @@ geom_line(aes(y = Shasta2021p5), color="red") +
 geom_line(aes(y = Shasta2021p6), color="red") +
 labs(x="band", y="reflectance")
 
-# Plot this dataset with ggplot
+# Plot this dataset with another colors
 # The light color represent the results of 2019, the dark color represent the results of 2021
 ggplot(spectralst, aes(x=band)) +
 geom_line(aes(y = Shasta2019p1), color="light blue") +
