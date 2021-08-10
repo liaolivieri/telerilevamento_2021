@@ -6,7 +6,7 @@
 #Library:
 library(raster)
 library(rasterVis)
-library(RStoolbox)
+library(RStoolbox) # for the indices
 library(ggplot2) # for the functional ggplot
 library(gridExtra)
 library(rgdal) # for spectral signatures
