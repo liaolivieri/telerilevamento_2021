@@ -76,7 +76,7 @@ dev.off()
 # row=1,2 una riga e due colonne:
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
-# non riusciamo in questo modo a plottare insieme quindi usiamo la funzione Par per decidere come mettere le immahgini nel nostro software:
+# non riusciamo in questo modo a plottare insieme quindi usiamo la funzione "Par" per decidere come mettere le immahgini nel nostro software:
 par(mfrow=c(1,2))
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
