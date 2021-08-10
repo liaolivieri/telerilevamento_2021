@@ -7,9 +7,9 @@
 library(raster)
 library(rasterVis)
 library(RStoolbox)
-library(ggplot2)
+library(ggplot2) # for the functional ggplot
 library(gridExtra)
-library(rgdal)
+library(rgdal) # for spectral signatures
 
 setwd("C:/lab/exam") #Windows
 
